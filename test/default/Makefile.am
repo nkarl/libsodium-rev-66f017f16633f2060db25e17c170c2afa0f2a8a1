@@ -81,6 +81,7 @@ EXTRA_DIST = \
 	stream3.exp \
 	stream4.exp \
 	verify1.exp \
+	vrf_03.exp \
 	xchacha20.exp
 
 DISTCLEANFILES = \
@@ -161,6 +162,7 @@ DISTCLEANFILES = \
 	stream3.res \
 	stream4.res \
 	verify1.res \
+	vrf_03.res \
 	xchacha20.res
 
 AM_CPPFLAGS = \
@@ -240,7 +242,8 @@ TESTS_TARGETS = \
 	stream2 \
 	stream3 \
 	stream4 \
-	verify1
+	verify1 \
+	vrf_03
 
 if !EMSCRIPTEN
 TESTS_TARGETS += \
@@ -482,6 +485,9 @@ stream4_LDADD             = $(TESTS_LDADD)
 
 verify1_SOURCE            = cmptest.h verify1.c
 verify1_LDADD             = $(TESTS_LDADD)
+
+vrf_03_SOURCE                = cmptest.h vrf_03.c
+vrf_03_LDADD                 = $(TESTS_LDADD)
 
 xchacha20_SOURCE          = cmptest.h xchacha20.c
 xchacha20_LDADD           = $(TESTS_LDADD)
