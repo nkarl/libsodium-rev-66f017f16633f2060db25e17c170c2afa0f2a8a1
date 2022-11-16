@@ -75,11 +75,25 @@ crypto_vrf_seed_keypair(unsigned char *pk, unsigned char *sk,
     return 0;
 }
 
-int
-crypto_vrf_prove(unsigned char *proof, const unsigned char *m,
-                 const unsigned long long mlen, const unsigned char *skpk)
+void
+crypto_vrf_sk_to_pk(unsigned char pk[crypto_vrf_PUBLICKEYBYTES],
+                                const unsigned char skpk[crypto_vrf_SECRETKEYBYTES])
 {
-    return crypto_vrf_ietfdraft13_prove(proof, m, mlen, skpk);
+    memmove(pk, skpk+32, 32);
+}
+
+void
+crypto_vrf_sk_to_seed(unsigned char seed[crypto_vrf_SEEDBYTES],
+                                  const unsigned char skpk[crypto_vrf_SECRETKEYBYTES])
+{
+    memmove(seed, skpk, 32);
+}
+
+int
+crypto_vrf_prove(unsigned char *proof, const unsigned char *skpk,
+                 const unsigned char *m, const unsigned long long mlen)
+{
+    return crypto_vrf_ietfdraft13_prove(proof, skpk, m, mlen);
 }
 
 int

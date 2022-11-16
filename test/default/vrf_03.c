@@ -41,10 +41,10 @@ int main(void)
         sodium_hex2bin(seed, 32,
                        test_data[i].seed, (size_t) -1U, NULL, NULL, NULL);
 
-        crypto_vrf_seed_keypair(pk, sk, seed);
+        crypto_vrf_ietfdraft03_keypair_from_seed(pk, sk, seed);
         printf("%s\n", sodium_bin2hex(pk_hex, sizeof pk_hex, pk, sizeof pk));
 
-        if (crypto_vrf_ietfdraft03_prove(proof, messages[i], i, sk) != 0){
+        if (crypto_vrf_ietfdraft03_prove(proof, sk, messages[i], i) != 0){
             printf("crypto_vrf_prove() error: [%u]\n", i);
         }
         printf("%s\n", sodium_bin2hex(proof_hex, sizeof proof_hex, proof, sizeof proof));

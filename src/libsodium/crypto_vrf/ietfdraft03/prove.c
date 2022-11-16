@@ -11,15 +11,14 @@
 
 int
 crypto_vrf_ietfdraft03_prove(unsigned char *proof,
-                             const unsigned char *m, unsigned long long mlen,
-                             const unsigned char *sk)
+                             const unsigned char *sk,
+                             const unsigned char *m, unsigned long long mlen)
 {
 
     crypto_hash_sha512_state hs;
     unsigned char az[64], r_string[64];
     unsigned char H_string[32];
     unsigned char kB_string[32], kH_string[32];
-    unsigned char string_to_hash[32 + mlen];
     unsigned char hram[64], nonce[64];
     ge25519_p3    H, Gamma, kB, kH;
 
@@ -28,13 +27,11 @@ crypto_vrf_ietfdraft03_prove(unsigned char *proof,
     az[31] &= 127;
     az[31] |= 64;
 
-    memmove(string_to_hash, sk + 32, 32);
-    memmove(string_to_hash + 32, m, mlen);
-
     crypto_hash_sha512_init(&hs);
     crypto_hash_sha512_update(&hs, &SUITE, 1);
     crypto_hash_sha512_update(&hs, &ONE, 1);
-    crypto_hash_sha512_update(&hs, string_to_hash, 32 + mlen);
+    crypto_hash_sha512_update(&hs, sk + 32, 32);
+    crypto_hash_sha512_update(&hs, m, mlen);
     crypto_hash_sha512_final(&hs, r_string);
 
     r_string[31] &= 0x7f; /* clear sign bit */

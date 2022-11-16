@@ -45,7 +45,7 @@ int main(void)
 
         crypto_vrf_seed_keypair(pk[i], sk[i], seed);
 
-        if (crypto_vrf_ietfdraft13_prove_batchcompat(proof[i], messages[i], i, sk[i]) != 0){
+        if (crypto_vrf_ietfdraft13_prove_batchcompat(proof[i], sk[i], messages[i], i) != 0){
             printf("crypto_vrf_prove() error: [%u]\n", i);
         }
 

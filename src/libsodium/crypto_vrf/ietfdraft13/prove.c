@@ -10,9 +10,8 @@
 
 
 int
-crypto_vrf_ietfdraft13_prove(unsigned char *proof,
-                             const unsigned char *m, unsigned long long mlen,
-                             const unsigned char *sk)
+crypto_vrf_ietfdraft13_prove(unsigned char *proof, const unsigned char *sk,
+                             const unsigned char *m, unsigned long long mlen)
 {
 
     crypto_hash_sha512_state hs;
@@ -74,9 +73,8 @@ crypto_vrf_ietfdraft13_prove(unsigned char *proof,
 }
 
 int
-crypto_vrf_ietfdraft13_prove_batchcompat(unsigned char *proof,
-                             const unsigned char *m, unsigned long long mlen,
-                             const unsigned char *sk)
+crypto_vrf_ietfdraft13_prove_batchcompat(unsigned char *proof, const unsigned char *sk,
+                             const unsigned char *m, unsigned long long mlen)
 {
 
     crypto_hash_sha512_state hs;

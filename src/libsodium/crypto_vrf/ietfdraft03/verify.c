@@ -47,7 +47,7 @@ vrf_verify(const unsigned char *pi,
 {
     unsigned char H_string[32], U_string[32], V_string[32], Y_string[32];
     unsigned char cn[32], c[32], s[32];
-    unsigned char string_to_hash[32 + alphalen], hram[64], r_string[64];
+    unsigned char hram[64], r_string[64];
 
     crypto_hash_sha512_state hs;
     ge25519_p2     U, V;
@@ -72,12 +72,11 @@ vrf_verify(const unsigned char *pi,
 
     memset(c+16, 0, 16);
 
-    memmove(string_to_hash, Y_string, 32);
-    memmove(string_to_hash + 32, alpha, alphalen);
     crypto_hash_sha512_init(&hs);
     crypto_hash_sha512_update(&hs, &SUITE, 1);
     crypto_hash_sha512_update(&hs, &ONE, 1);
-    crypto_hash_sha512_update(&hs, string_to_hash, 32 + alphalen);
+    crypto_hash_sha512_update(&hs, Y_string, 32);
+    crypto_hash_sha512_update(&hs, alpha, alphalen);
     crypto_hash_sha512_final(&hs, r_string);
 
     r_string[31] &= 0x7f; /* clear sign bit */

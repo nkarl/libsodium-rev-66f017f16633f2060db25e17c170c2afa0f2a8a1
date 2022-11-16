@@ -14,7 +14,7 @@ extern "C" {
 
 #define crypto_vrf_ietfdraft03_BYTES 80U
 SODIUM_EXPORT
-size_t crypto_vrf_ietfdraft03_bytes(void);
+size_t crypto_vrf_ietfdraft03_proofbytes(void);
 
 #define crypto_vrf_ietfdraft03_OUTPUTBYTES 64U
 SODIUM_EXPORT
@@ -34,8 +34,9 @@ size_t crypto_vrf_ietfdraft03_secretkeybytes(void);
 
 SODIUM_EXPORT
 int crypto_vrf_ietfdraft03_prove(unsigned char *proof,
+                                 const unsigned char *sk,
                                  const unsigned char *m,
-                                 unsigned long long mlen, const unsigned char *sk);
+                                 unsigned long long mlen);
 
 SODIUM_EXPORT
 int crypto_vrf_ietfdraft03_verify(unsigned char *output,
@@ -50,25 +51,24 @@ int crypto_vrf_ietfdraft03_proof_to_hash(unsigned char *hash,
                                          const unsigned char *proof)
 __attribute__ ((nonnull));
 
-SODIUM_EXPORT
-int crypto_vrf_ietfdraft03_keypair(unsigned char *pk, unsigned char *sk)
-__attribute__ ((nonnull));
+/*
+ * We keep the functions below to be backwards compatible with older
+ * versions of the cardano node, but these are identical as those
+ * without the versioning in crypto_vrf.h
+ */
 
 SODIUM_EXPORT
-int crypto_vrf_ietfdraft03_seed_keypair(unsigned char *pk,
-                                        unsigned char *sk,
-                                        const unsigned char *seed)
-__attribute__ ((nonnull));
-
-SODIUM_EXPORT
-void crypto_vrf_ietfdraft03_sk_to_seed(unsigned char *seed,
-                                       const unsigned char *sk)
+int crypto_vrf_ietfdraft03_keypair_from_seed(unsigned char *pk, unsigned char *sk,
+                            const unsigned char *seed)
 __attribute__ ((nonnull));
 
 SODIUM_EXPORT
 void crypto_vrf_ietfdraft03_sk_to_pk(unsigned char *pk,
-                                     const unsigned char *sk)
-__attribute__ ((nonnull));
+                         const unsigned char *skpk);
+
+SODIUM_EXPORT
+void crypto_vrf_ietfdraft03_sk_to_seed(unsigned char *seed,
+                           const unsigned char *skpk);
 
 #ifdef __cplusplus
 }
