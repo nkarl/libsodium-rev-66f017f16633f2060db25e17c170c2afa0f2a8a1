@@ -14,7 +14,7 @@ extern "C" {
 
 #define crypto_vrf_ietfdraft03_BYTES 80U
 SODIUM_EXPORT
-size_t crypto_vrf_ietfdraft03_proofbytes(void);
+size_t crypto_vrf_ietfdraft03_bytes(void);
 
 #define crypto_vrf_ietfdraft03_OUTPUTBYTES 64U
 SODIUM_EXPORT

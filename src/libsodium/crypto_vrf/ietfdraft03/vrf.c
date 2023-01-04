@@ -2,7 +2,7 @@
 #include "crypto_vrf.h"
 
 size_t
-crypto_vrf_ietfdraft03_proofbytes(void)
+crypto_vrf_ietfdraft03_bytes(void)
 {
     return crypto_vrf_ietfdraft03_BYTES;
 }
