@@ -88,11 +88,9 @@ libsodium_la_SOURCES = \
     crypto_vrf/ietfdraft13/prove.c \
     crypto_vrf/ietfdraft13/verify.c \
     crypto_vrf/ietfdraft13/vrf.c \
-    crypto_vrf/ietfdraft13/vrf_ietfdraft13.h \
     crypto_vrf/ietfdraft03/prove.c \
     crypto_vrf/ietfdraft03/verify.c \
     crypto_vrf/ietfdraft03/vrf.c \
-    crypto_vrf/ietfdraft03/vrf_ietfdraft03.h \
 	include/sodium/private/chacha20_ietf_ext.h \
 	include/sodium/private/common.h \
 	include/sodium/private/ed25519_ref10.h \
