@@ -34,7 +34,7 @@ int main(void)
     assert(crypto_vrf_ietfdraft13_SECRETKEYBYTES == 64);
     assert(crypto_vrf_ietfdraft13_PUBLICKEYBYTES == 32);
     assert(crypto_vrf_ietfdraft13_SEEDBYTES == 32);
-    assert(crypto_vrf_batchcompat_ietfdraft13_BYTES == 128);
+    assert(crypto_vrf_ietfdraft13_BYTES_BATCHCOMPAT == 128);
     assert(crypto_vrf_ietfdraft13_OUTPUTBYTES == 64);
 
     for (i = 0U; i < (sizeof test_data) / (sizeof test_data[0]); i++) {
