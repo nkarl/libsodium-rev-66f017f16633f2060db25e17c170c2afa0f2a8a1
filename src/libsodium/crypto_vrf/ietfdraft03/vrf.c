@@ -7,6 +7,13 @@ crypto_vrf_ietfdraft03_bytes(void)
     return crypto_vrf_ietfdraft03_BYTES;
 }
 
+// Kept for backwards compatibility
+size_t
+crypto_vrf_ietfdraft03_proofbytes(void)
+{
+    return crypto_vrf_ietfdraft03_BYTES;
+}
+
 size_t
 crypto_vrf_ietfdraft03_outputbytes(void)
 {
