@@ -15,6 +15,11 @@ included in this repo (see [this] commit for example).
 [1.0.18 tag]: https://github.com/jedisct1/libsodium/releases/tag/1.0.18-RELEASE
 [this]: https://github.com/input-output-hk/libsodium/commit/e26256b5758aaaa0d64696662f3380350ad3c22d
 
+### Roles and responsibilities
+The @cardano-crypto group is responsible for helping with 
+reviewing and merging pull requests and adjudicating technical 
+(or other) disputes.
+
 ### Using a new version of the fork with Nix
 Cardano development in general is primarily based on the Nix
 infrastructure (https://nixos.org/), which enables packaging, 
